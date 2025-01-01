@@ -9,6 +9,8 @@ public class Bullet : MonoBehaviour
     private InputAction shoot;
 
     private Vector3 shootDir;
+    
+    [SerializeField] private GameObject explosion;
 
     [SerializeField] private float speed = 50f;
 
@@ -33,6 +35,7 @@ public class Bullet : MonoBehaviour
         if (other.GetComponent<IExplodable>() != null)
         {
             // trigger explosion
+            Instantiate(explosion, this.transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
