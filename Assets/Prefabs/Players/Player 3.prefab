@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 3745408988066513075}
   - component: {fileID: -4344657902902851224}
   - component: {fileID: 7555171666469178665}
+  - component: {fileID: -3846961368556316160}
   m_Layer: 0
   m_Name: Player 3
   m_TagString: Untagged
@@ -242,8 +243,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
-  bullet: {fileID: 8555845741741312243, guid: ba39ca0aaff5a6e49a7303d287a81933, type: 3}
-  moveDirection: {x: 0, y: 0}
 --- !u!114 &-4344657902902851224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,3 +293,30 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
+--- !u!50 &-3846961368556316160
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8743524310164231532}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

@@ -13,31 +13,33 @@ public class Bullet : MonoBehaviour
     [SerializeField] private GameObject explosion;
 
     [SerializeField] private float speed = 50f;
+    
+    public event Action OnExplode;
 
     // Fix shoot direction, only take whatever direction the player is facing for impl?
     public void Setup(Vector3 shootDir)
     {
         this.shootDir = shootDir;
-        transform.eulerAngles = new Vector3(0, 0, GetAngleFromVectorFloat(shootDir));
+        // transform.eulerAngles = new Vector3(0, 0, GetAngleFromVectorFloat(shootDir));
         Destroy(this.gameObject, 1f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.right * speed * Time.deltaTime;
+        transform.position += shootDir * speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         // is Iexplodable interface actually useful for anything?
         // should the collision be generalized, and explosions just be a part of it?
-        if (other.GetComponent<IExplodable>() != null)
-        {
-            // trigger explosion
-            Instantiate(explosion, this.transform.position, Quaternion.identity);
-            Destroy(gameObject);
-        }
+        // trigger explosion
+        // sometimes hits player?? i know why idk an elegane solution to this lol
+        Instantiate(explosion, this.transform.position, transform.rotation);
+        // EventManager.OnExplosionTriggered?.Invoke(this.transform.position, new Vector2(5f, 5f));
+        // OnExplode?.Invoke();
+        Destroy(gameObject);
     }
 
     

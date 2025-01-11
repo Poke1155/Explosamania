@@ -1,18 +1,32 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IExplodable
+public abstract class Enemy : MonoBehaviour, IDamageable
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    #region IDamageable
+    public event Action Death;
+    public int CurrentHealth { get; set; }
+    public int MaxHealth { get; set; }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        CurrentHealth = MaxHealth;
+        Death += OnDeath;
+
     }
+    public void TakeDamage(int damage)
+    {
+        CurrentHealth = CurrentHealth - damage <= 0 ? 0 : CurrentHealth - damage;
+        if (CurrentHealth == 0) Death?.Invoke();
+    }
+    public void OnDeath()
+    {
+        throw new NotImplementedException();
+    }
+    
+
+    #endregion
+    
 }
